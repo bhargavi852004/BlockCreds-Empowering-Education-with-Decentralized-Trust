@@ -247,6 +247,7 @@ The system will:
 - **Language:** Solidity  
 - **Deployed On:** Polygon Amoy Testnet  
 - **Features:** Issue, Verify, and Revoke certificates  
-- **Tools:** Hardhat / Remix for deployment  
+- **Tools:** Remix for deployment  
 
 ---
+
