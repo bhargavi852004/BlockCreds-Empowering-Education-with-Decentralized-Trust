@@ -203,49 +203,54 @@ Access the application at:
 
 ## Usage Guide
 
-### 1. Admin Login
+### Admin Login
 - Navigate to the Admin Login page.  
 - Enter your admin email and password.  
-- Click **Login** to access the dashboard.  
-
-📌 Screenshot Placeholder:  
-![Admin Login](static/core/images/screenshots/admin_login.png)
+- Click **Login** to access the dashboard.
+<img width="1919" height="1021" alt="Index" src="https://github.com/user-attachments/assets/ef0e9a18-23b2-4284-af89-1e3bd0b9aa72" />
+<img width="1919" height="1033" alt="Admin" src="https://github.com/user-attachments/assets/354c8f31-2f87-4936-b28c-1ff314511ab1" />
 
 ---
+### Admin Dashboard
+- Get Info about issued, revoked certificates.
+- Navigate to the issue certificate page.  
+- Navigate to the Verify certificate page.
+- Navigate to the Revoke certificate page.
+<img width="1919" height="1024" alt="Dashboard" src="https://github.com/user-attachments/assets/0b563a40-d870-4415-8d50-319589b17cd4" />
 
-### 2. Issue Certificate
+### 1. Issue Certificate
 - Go to **Issue Certificate** from the dashboard.  
 - Fill in Student Details, Course Name, and other fields.  
 - Click **Generate Certificate**.  
+<img width="1596" height="990" alt="Issue_Certificate Dashboard" src="https://github.com/user-attachments/assets/66648b6c-f719-48da-9ee5-50a885483481" />
 
 The system will:  
 - Generate PDF & QR Code  
 - Upload PDF to IPFS  
 - Store IPFS Hash on Polygon Smart Contract  
 - Send Email to student  
+<img width="954" height="742" alt="Screenshot 2025-09-08 140534" src="https://github.com/user-attachments/assets/0de0839c-028a-4722-9256-a085ed6f4fe3" />
 
-📌 Screenshot Placeholder:  
-![Issue Certificate](static/core/images/screenshots/issue_certificate.png)
+
 
 ---
 
-### 3. Verify Certificate
+### 2. Verify Certificate
 - Scan the QR Code or visit the **Verify Certificate** page.  
 - Enter the Certificate Hash.  
-- Click **Verify** to check authenticity.  
+- Click **Verify** to check authenticity.
+<img width="1208" height="533" alt="Screenshot 2025-09-08 140919" src="https://github.com/user-attachments/assets/15ad0622-e667-456d-a1fb-344c9097d529" />
+<img width="909" height="555" alt="Screenshot 2025-09-08 140944" src="https://github.com/user-attachments/assets/82a682e8-4405-4ae6-9850-836b1ad0a86b" />
 
-📌 Screenshot Placeholder:  
-![Verify Certificate](static/core/images/screenshots/verify_certificate.png)
-
+<img width="1918" height="951" alt="Verify_Certificate Dashboard" src="https://github.com/user-attachments/assets/0e2abd47-c263-4496-822c-aee19dbb36a0" />
 ---
 
 ### 4. Revoke Certificate
 - Navigate to **Revoke Certificate** page.  
 - Select the certificate and click **Revoke**.  
 - Blockchain updates status to Revoked.  
+<img width="1592" height="977" alt="Revoke Dashboard" src="https://github.com/user-attachments/assets/0d6059d6-2fc5-4e68-adca-a2a2f007ee58" />
 
-📌 Screenshot Placeholder:  
-![Revoke Certificate](static/core/images/screenshots/revoke_certificate.png)
 
 ---
 
@@ -257,5 +262,9 @@ The system will:
 - **Tools:** Remix for deployment  
 
 ---
+## ✍️ Developed By
+
+* **Nagulapally Bhargavi** - https://github.com/bhargavi852004
+
 
 
