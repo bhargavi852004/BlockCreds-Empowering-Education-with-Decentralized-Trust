@@ -181,6 +181,13 @@ PINATA_JWT=your_pinata_jwt
 POLYGON_PRIVATE_KEY=your_wallet_private_key
 POLYGON_RPC_URL=https://rpc-amoy.polygon.technology
 CONTRACT_ADDRESS=your_deployed_contract_address
+# Email Settings (for student notifications)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your@gmail.com
+EMAIL_HOST_PASSWORD=PASSWORD
+
 ```
 
 ### 3. Run Migrations & Start Server
@@ -250,4 +257,5 @@ The system will:
 - **Tools:** Remix for deployment  
 
 ---
+
 
