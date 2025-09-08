@@ -1,0 +1,83 @@
+/* Tabs */
+.tab-btn {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-weight: 500;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background-color: #4F46E5;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content:not(.hidden) {
+    display: block;
+}
+
+/* Overlay + frame */
+.qr-overlay {
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-frame {
+    border: 4px solid #6366f1;
+    width: 250px;
+    height: 250px;
+    box-sizing: border-box;
+    position: relative;
+    background: transparent;
+    overflow: hidden;
+    z-index: 20;
+}
+
+/* Laser line animation */
+.laser-line {
+    width: 100%;
+    height: 2px;
+    background: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes laserMove {
+    0% { top: 0; }
+    50% { top: calc(100% - 2px); }
+    100% { top: 0; }
+}
+
+.animate-laser {
+    animation: laserMove 2s linear infinite;
+}
+
+/* Home button */
+a.bg-primary {
+    background-color: #4F46E5;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+a.bg-primary:hover {
+    background-color: #3730A3;
+}

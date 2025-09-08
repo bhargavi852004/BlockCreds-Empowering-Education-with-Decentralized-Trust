@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Revoke Certificate{% endblock %}
+{% block header %}Revoke Certificate{% endblock %}
+{% block content %}
+
+<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-primary">Revoke Certificates</h2>
+
+    <!-- Search Bar -->
+    <div class="mb-4">
+        <input type="text" id="searchInput" placeholder="Search by student name or hash"
+               class="w-full border rounded px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary">
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full table-auto border-collapse">
+            <thead>
+                <tr class="bg-gray-200 dark:bg-gray-700 text-left">
+                    <th class="p-3">Student</th>
+                    <th class="p-3">Certificate Hash</th>
+                    <th class="p-3">Status</th>
+                    <th class="p-3">Action</th>
+                </tr>
+            </thead>
+            <tbody id="certificateTable">
+                {% for cert in certificates %}
+                <tr class="border-b dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    <td class="p-3">{{ cert.student.name }}</td>
+                    <td class="p-3">{{ cert.blockchain_hash }}</td>
+                    <td class="p-3">
+                        {% if cert.revoked %}
+                            <span class="text-red-500 font-semibold">Revoked</span>
+                        {% else %}
+                            <span class="text-green-500 font-semibold">Active</span>
+                        {% endif %}
+                    </td>
+                    <td class="p-3">
+                        {% if not cert.revoked %}
+                            <button onclick="confirmRevoke('{{ cert.blockchain_hash }}')"
+                                    class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                                Revoke
+                            </button>
+                        {% else %}
+                            <span class="text-gray-400">N/A</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Hidden form for CSRF-safe revoke -->
+<form id="revokeForm" method="POST" style="display:none;">
+    {% csrf_token %}
+    <input type="hidden" name="hash" id="revokeHash">
+</form>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function confirmRevoke(hash) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This will revoke the certificate permanently!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Yes, Revoke it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Set the hash in the hidden form and submit
+            document.getElementById('revokeHash').value = hash;
+            document.getElementById('revokeForm').submit();
+        }
+    });
+}
+
+// Table search filter
+document.getElementById('searchInput').addEventListener('keyup', function () {
+    const value = this.value.toLowerCase();
+    document.querySelectorAll('#certificateTable tr').forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(value) ? '' : 'none';
+    });
+});
+</script>
+
+{% endblock %}

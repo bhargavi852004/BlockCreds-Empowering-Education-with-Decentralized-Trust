@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Verify Certificate{% endblock %}
+
+{% block content %}
+<!-- Include necessary libraries -->
+<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="{% static 'core/js/verify_admin.js' %}"></script>
+
+<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl mx-auto mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center text-primary">Verify Certificate</h2>
+
+    <!-- Tabs -->
+    <div class="flex justify-center mb-6 space-x-4">
+        <button onclick="showTab('manual')" id="manual-tab" class="tab-btn active px-4 py-2 rounded bg-primary text-white">Manual Entry</button>
+        <button onclick="showTab('upload')" id="upload-tab" class="tab-btn px-4 py-2 rounded border border-gray-300 dark:border-gray-600">Upload QR</button>
+        <button onclick="showTab('scan')" id="scan-tab" class="tab-btn px-4 py-2 rounded border border-gray-300 dark:border-gray-600">Scan QR</button>
+    </div>
+
+    <!-- Manual Entry -->
+    <div id="manual" class="tab-content">
+        <form method="GET" action="{% url 'verify_result' %}" class="space-y-4">
+            <input type="text" name="hash" placeholder="Enter Certificate Hash"
+                class="w-full border rounded px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none">
+            <button type="submit" class="w-full bg-primary text-white py-2 rounded hover:bg-indigo-700 transition">
+                Verify
+            </button>
+        </form>
+    </div>
+
+    <!-- Upload QR -->
+    <div id="upload" class="tab-content hidden">
+        <form id="qrUploadForm" enctype="multipart/form-data" class="space-y-4">
+            <input type="file" accept="image/*" id="qrUpload"
+                class="w-full border rounded px-4 py-2 dark:bg-gray-700 dark:text-white">
+            <button type="button" onclick="uploadQR()"
+                class="w-full bg-primary text-white py-2 rounded hover:bg-indigo-700 transition">
+                Upload & Verify
+            </button>
+        </form>
+    </div>
+
+    <!-- Live QR Scan -->
+    <div id="scan" class="tab-content hidden relative">
+        <div class="qr-overlay absolute inset-0 flex justify-center items-center pointer-events-none">
+            <div class="qr-frame border-4 border-primary w-64 h-64 relative overflow-hidden">
+                <div class="laser-line absolute top-0 left-0 w-full h-1 bg-red-500 animate-laser"></div>
+            </div>
+        </div>
+        <div id="qr-reader" class="w-full rounded-lg border border-gray-300 dark:border-gray-600"></div>
+        <p class="text-center text-sm mt-2 text-gray-500">Point your camera at the QR code</p>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'core/css/verify.css' %}">
+{% endblock %}
